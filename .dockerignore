@@ -1,0 +1,11 @@
+node_modules
+dist
+.git
+.env
+.env.*
+Dockerfile.local
+README.md
+POSTMAN_GUIDE.md
+rest-client.http
+*.log
+logs

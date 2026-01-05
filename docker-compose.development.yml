@@ -1,0 +1,56 @@
+services:
+  zigscan-api-dev:
+    image: ${DEV_IMAGE:-ghcr.io/cryptocomicsdevs/zigscanapi-development:latest}
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    container_name: zigscan-api-dev
+    restart: unless-stopped
+    ports:
+      - "8010:8010"
+    network_mode: 'bridge'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # Force the dev container to listen on 8010 inside the container.
+      ZIGSCAN_API_PORT: 8010
+      # Ensure the entrypoint also brings up the SSH tunnel using the mounted key.
+      USE_SSH_TUNNEL: "true"
+      SSH_PRIVATE_KEY: /home/ubuntu/.ssh/primary-nopass
+      REDIS_HOST: redis
+    volumes:
+      - ${SSH_PRIVATE_KEY_PATH:-$HOME/.ssh/id_rsa}:/root/.ssh/id_rsa:ro
+      - ${SSH_PRIVATE_KEY_PATH:-$HOME/.ssh/id_rsa}:/home/ubuntu/.ssh/primary-nopass:ro
+      - ${SSH_PRIVATE_KEY_PATH:-$HOME/.ssh/id_rsa}:/root/.ssh/primary:ro
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8010/"]
+      interval: 120s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  redis:
+    image: redis:7-alpine
+    container_name: zigscan-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: >
+      redis-server --appendonly yes
+
+volumes:
+  redis-data:

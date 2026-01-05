@@ -1,0 +1,1058 @@
+{
+  "info": {
+    "_postman_id": "4a0c0c2e-2a2f-4a3d-9e82-collection",
+    "name": "ZigScan API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for exploring the ZigScan API. Set `base_url` and `api_key` variables (plus the optional helpers) before running any requests."
+  },
+  "item": [
+    {
+      "name": "General",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v2/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "health"
+              ]
+            }
+          }
+        },
+        {
+          "name": "System Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/admin/system-stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "system-stats"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Latest Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/transactions/latest?limit={{tx_limit}}&offset={{tx_offset}}&action={{tx_action}}&startDate={{tx_start}}&endDate={{tx_end}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "latest"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "{{tx_limit}}",
+                  "description": "1-100"
+                },
+                {
+                  "key": "offset",
+                  "value": "{{tx_offset}}"
+                },
+                {
+                  "key": "action",
+                  "value": "{{tx_action}}",
+                  "description": "Supports SQL % wildcards"
+                },
+                {
+                  "key": "startDate",
+                  "value": "{{tx_start}}",
+                  "description": "ISO date (optional)"
+                },
+                {
+                  "key": "endDate",
+                  "value": "{{tx_end}}",
+                  "description": "ISO date (optional)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Transaction Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/transactions/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "stats"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Message Types",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/transactions/message-types",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "message-types"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Transaction Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/transaction/{{tx_hash}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "transaction",
+                "{{tx_hash}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "Account Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/account/details/{{account_address}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "account",
+                "details",
+                "{{account_address}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Account Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/account/transactions/{{account_address}}?limit={{account_limit}}&offset={{account_offset}}&action_type={{account_action}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "account",
+                "transactions",
+                "{{account_address}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "{{account_limit}}"
+                },
+                {
+                  "key": "offset",
+                  "value": "{{account_offset}}"
+                },
+                {
+                  "key": "action_type",
+                  "value": "{{account_action}}",
+                  "description": "Optional filter"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Account Delegations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/account/delegations/{{account_address}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "account",
+                "delegations",
+                "{{account_address}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Accounts Total",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/accounts/total",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "accounts",
+                "total"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contracts & Codes",
+      "item": [
+        {
+          "name": "Contract Instantiations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/contracts?limit={{contract_limit}}&offset={{contract_offset}}&code_id={{contract_code_id}}&sender={{contract_sender}}&contract_address={{contract_address}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "{{contract_limit}}"
+                },
+                {
+                  "key": "offset",
+                  "value": "{{contract_offset}}"
+                },
+                {
+                  "key": "code_id",
+                  "value": "{{contract_code_id}}"
+                },
+                {
+                  "key": "sender",
+                  "value": "{{contract_sender}}"
+                },
+                {
+                  "key": "contract_address",
+                  "value": "{{contract_address}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Contract Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/contract/details/{{contract_address}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "contract",
+                "details",
+                "{{contract_address}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Contract Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/contract/transactions/{{contract_address}}?limit={{contract_tx_limit}}&offset={{contract_tx_offset}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "contract",
+                "transactions",
+                "{{contract_address}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "{{contract_tx_limit}}"
+                },
+                {
+                  "key": "offset",
+                  "value": "{{contract_tx_offset}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Code Stores",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/codes?limit={{code_limit}}&offset={{code_offset}}&code_id={{code_id}}&sender={{code_sender}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "codes"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "{{code_limit}}"
+                },
+                {
+                  "key": "offset",
+                  "value": "{{code_offset}}"
+                },
+                {
+                  "key": "code_id",
+                  "value": "{{code_id}}"
+                },
+                {
+                  "key": "sender",
+                  "value": "{{code_sender}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Code Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/code/details/{{code_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "code",
+                "details",
+                "{{code_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "DeFi",
+      "item": [
+        {
+          "name": "Tokens",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/tokens",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "tokens"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Token Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/tokens/details/{{token_denom}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "tokens",
+                "details",
+                "{{token_denom}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Token Pools",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/tokens/{{token_denom}}/pools",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "tokens",
+                "{{token_denom}}",
+                "pools"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Token Holders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/tokens/{{token_denom}}/holders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "tokens",
+                "{{token_denom}}",
+                "holders"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Token OHLCV",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/tokens/{{token_denom}}/ohlcv",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "tokens",
+                "{{token_denom}}",
+                "ohlcv"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Pool Trades",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/pools/{{pool_id}}/trades",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "pools",
+                "{{pool_id}}",
+                "trades"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Supply & TVL",
+      "item": [
+        {
+          "name": "Supply Overview",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/supply",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "supply"
+              ]
+            }
+          }
+        },
+        {
+          "name": "ZIG Market Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/zig/market-data",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "zig",
+                "market-data"
+              ]
+            }
+          }
+        },
+        {
+          "name": "ZIG Staking Pool",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/zig/staking-pool",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "zig",
+                "staking-pool"
+              ]
+            }
+          }
+        },
+        {
+          "name": "ZIG Price Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/zig/price-data",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "zig",
+                "price-data"
+              ]
+            }
+          }
+        },
+        {
+          "name": "TVL Snapshot",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/tvl",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "tvl"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Validators",
+      "item": [
+        {
+          "name": "Validator List",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/validators",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "validators"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Validator Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/validator/details/{{validator_address}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "validator",
+                "details",
+                "{{validator_address}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users/Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v2/auth/signup",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "signup"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v2/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "logout"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Logout All",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/auth/logout-all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "logout-all"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/auth/sessions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "sessions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/auth/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "profile"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Admin Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/admin/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Admin System Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/admin/system-stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "system-stats"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Admin Audit Log",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v2/admin/audit-log",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "audit-log"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

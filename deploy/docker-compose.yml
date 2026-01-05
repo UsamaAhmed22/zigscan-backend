@@ -1,0 +1,26 @@
+services:
+  zigscan-api:
+    image: ${IMAGE_NAME:-ghcr.io/cryptocomicsdevs/zigscanapi-mainnet-v2:latest}
+    container_name: zigscan-api
+    network_mode: host
+    restart: unless-stopped
+    env_file:
+      # Use the root-level .env so production gets the same configuration as local dev
+      - ../.env
+    volumes:
+      # Mount SSH key for ClickHouse tunnel
+      - ${HOME}/.ssh/postgres_tunnel_key:/root/.ssh/tunnel_key:ro
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 512M
