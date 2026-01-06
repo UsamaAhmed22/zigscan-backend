@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: Newproject
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      name: backend
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: usamaahmed99/Newproject-backend-beta
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: Newproject
+spec:
+  type: LoadBalancer  # Changed from NodePort to LoadBalancer
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
