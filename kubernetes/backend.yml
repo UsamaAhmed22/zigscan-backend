@@ -21,6 +21,9 @@ spec:
           image: usamaahmed99/zigscan-backend:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: API_URL
+              value: "http://localhost:8000"  # Replace with your actual API URL
 ---
 apiVersion: v1
 kind: Service
