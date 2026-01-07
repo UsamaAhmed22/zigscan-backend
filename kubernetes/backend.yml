@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: usamaahmed99/newproject-backend-beta:null
+          image: usamaahmed99/zigscan-backend:latest
           ports:
             - containerPort: 8080
 ---
