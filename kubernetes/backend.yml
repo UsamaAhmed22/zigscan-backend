@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: usamaahmed99/Newproject-backend-beta:null
+          image: usamaahmed99/newproject-backend-beta:null
           ports:
             - containerPort: 8080
 ---
